@@ -18,6 +18,39 @@ int check() {
 	return input;
 }
 
+int checkNumber(string input) {	//проверка для ввода
+	string buf = "", res = "";
+	while (true) {
+		int length = 0, ctr_err = 0;
+		//getline(cin, input);
+		int first_numb = NULL, find_err = 0;
+		length = input.length();
+		for (int i = 0; i <= length; i++) {
+			if ((input[i] < '0' && input[i] > '9') ||
+				input[i] == '\0' || input[i] == '\n') {
+				if (!find_err) {
+					buf.assign(input, first_numb, i - (res.length() + ctr_err));
+					res += buf;
+					first_numb = NULL;
+					find_err = 1;
+					ctr_err++;
+				}
+			}
+			else
+				if (find_err) {
+					first_numb = i;
+					find_err = 0;
+				}
+		}
+		cout << res << endl;
+		int output = stoi(res);
+		cout << output << endl;;
+		return output;
+	}
+
+}
+
+
 int selection(int first, int last) {
 	int input;
 	while (true) {
@@ -89,9 +122,13 @@ int main() {
 
 		system("cls");
 		cout << "Введите число: ";
-		int dec = check();
-		input = decToBin(dec);
+		getline(cin, input);
+		getline(cin, input);
+				
+		int dec = checkNumber(input);
+		cout << "Вы ввели " << dec << endl;
 
+		input = decToBin(dec);
 		cout << "Число в двоичной СС: ";
 		cout << input << endl << endl;
 
