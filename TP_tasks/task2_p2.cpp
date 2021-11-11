@@ -7,6 +7,8 @@ using namespace std;
 struct Element {
     string elt;				// элемент
     Element* next;		// указатель на следующий элемент
+
+	//Element() : elt(NULL), next(nullptr) {}
 };
 
 class Stack {
@@ -153,11 +155,23 @@ void List::push_back(Stack* _stack_ptr) {
 //Функция вывода всего списка
 void List::print() {
 	if (is_empty()) { cout << "-is empty-" << endl;  return; }
+	int ctr = 0;
 	//вывод всех стеков
 	Node* p = first;
 	while (p) {
-		p->stack_ptr->output();
+		//p->stack_ptr->output();
 		p = p->next;
+		ctr++;
+	}
+	//p = first;
+	int ctr_loc = ctr;
+	for (int i = 0; i < ctr; i++) {
+		p = first;
+		for (int j = 0; j < ctr_loc-1; j++) {
+			p = p->next;
+		}
+		p->stack_ptr->output();
+		ctr_loc--;
 	}
 }
 
