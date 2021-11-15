@@ -24,7 +24,7 @@ int checkNumber(string input) {	//проверка для ввода
 		int length = 0, ctr_err = 0;
 		//getline(cin, input);
 		int first_numb = NULL, find_err = 0;
-		bool minus;
+		bool minus=0;
 		length = input.length();
 		if (input[0] == '-') minus = 1;
 		for (int i = 0; i <= length; i++) {
